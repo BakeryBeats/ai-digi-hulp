@@ -1,8 +1,9 @@
-
 async function sendMessage(){
 
 let input = document.getElementById("userInput");
 let message = input.value;
+
+if(message.trim() === "") return;
 
 addMessage("U: " + message);
 
