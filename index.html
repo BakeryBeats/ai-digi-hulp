@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<title>Digitale Hulp voor Senioren</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+<h1>Digitale Hulp</h1>
+<p>Stel een vraag over DigiD, MijnOverheid of uw telefoon.</p>
+</header>
+
+<div class="buttons">
+<button onclick="quickQuestion('Hoe maak ik een DigiD?')">DigiD hulp</button>
+<button onclick="quickQuestion('Hoe werkt MijnOverheid?')">MijnOverheid</button>
+<button onclick="quickQuestion('Ik heb hulp met mijn telefoon')">Telefoon hulp</button>
+</div>
+
+<div class="chat-container">
+
+<div id="chat"></div>
+
+<input 
+type="text" 
+id="userInput" 
+placeholder="Typ uw vraag..." 
+/>
+
+<button onclick="sendMessage()">Verstuur</button>
+
+</div>
+
+<div class="help">
+<p>Heeft u liever persoonlijke hulp?</p>
+
+<a href="https://wa.me/31600000000">
+<button class="whatsapp">Hulp via WhatsApp</button>
+</a>
+
+</div>
+
+<script src="config.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
