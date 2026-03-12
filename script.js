@@ -47,8 +47,8 @@ question:question
 })
 });
 
-let data = await response.json();
+let data = await response.text();
 
-return data.answer;
+return data;
 
 }
