@@ -1,47 +1,100 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-<meta charset="UTF-8">
-<title>Digitale Hulp voor Senioren</title>
-<link rel="stylesheet" href="style.css">
-</head>
+    <meta charset="UTF-8">
+    <title>Digitale Hulp voor Senioren</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
 
+        h1 {
+            color: #333;
+        }
+
+        .chat-container {
+            border: 1px solid #ccc;
+            padding: 10px;
+            max-width: 600px;
+            height: 300px;
+            overflow-y: auto;
+            background-color: #fff;
+            margin-bottom: 10px;
+        }
+
+        #chat div.user {
+            color: #1a73e8;
+            margin: 5px 0;
+        }
+
+        #chat div.bot {
+            color: #0b8043;
+            margin: 5px 0;
+        }
+
+        input[type="text"] {
+            width: 400px;
+            padding: 8px;
+            font-size: 14px;
+        }
+
+        button {
+            padding: 8px 12px;
+            font-size: 14px;
+            margin-left: 5px;
+            cursor: pointer;
+        }
+
+        .buttons {
+            margin-top: 10px;
+        }
+
+        .buttons button {
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+
+        .help {
+            margin-top: 20px;
+        }
+
+        .help .whatsapp {
+            background-color: #25d366;
+            color: white;
+            border: none;
+        }
+    </style>
+</head>
 <body>
 
 <header>
-<h1>Digitale Hulp</h1>
-<p>Stel een vraag over DigiD, MijnOverheid of uw telefoon.</p>
+    <h1>Digitale Hulp</h1>
+    <p>Stel een vraag over DigiD, MijnOverheid of uw telefoon.</p>
 </header>
 
 <div class="buttons">
-<button onclick="quickQuestion('Hoe maak ik een DigiD?')">DigiD hulp</button>
-<button onclick="quickQuestion('Hoe werkt MijnOverheid?')">MijnOverheid</button>
-<button onclick="quickQuestion('Ik heb hulp met mijn telefoon')">Telefoon hulp</button>
+    <button onclick="quickQuestion('Hoe maak ik een DigiD?')">DigiD hulp</button>
+    <button onclick="quickQuestion('Hoe werkt MijnOverheid?')">MijnOverheid</button>
+    <button onclick="quickQuestion('Ik heb hulp met mijn telefoon')">Telefoon hulp</button>
 </div>
 
 <div class="chat-container">
+    <div id="chat"></div>
 
-<div id="chat"></div>
-
-<input 
-type="text" 
-id="userInput" 
-placeholder="Typ uw vraag..." 
-/>
-
-<button onclick="sendMessage()">Verstuur</button>
-
+    <input type="text" id="userInput" placeholder="Typ uw vraag..." />
+    <button onclick="sendMessage()">Verstuur</button>
 </div>
 
 <div class="help">
-<p>Heeft u liever persoonlijke hulp?</p>
-
-<a href="https://wa.me/31600000000">
-<button class="whatsapp">Hulp via WhatsApp</button>
-</a>
-
+    <p>Heeft u liever persoonlijke hulp?</p>
+    <a href="https://wa.me/31600000000">
+        <button class="whatsapp">Hulp via WhatsApp</button>
+    </a>
 </div>
 
+<!-- Config en script -->
 <script src="config.js"></script>
 <script src="script.js"></script>
 
