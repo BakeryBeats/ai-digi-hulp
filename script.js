@@ -1,16 +1,27 @@
+// Bewaar het hele gesprek
+let conversation = [];
+
 // Verstuur de vraag en haal antwoord op
 async function sendMessage() {
     let input = document.getElementById("userInput");
     let message = input.value.trim();
     if (!message) return;
 
-    addMessage(message, "user"); // U: bericht
+    // Voeg het bericht van de gebruiker toe
+    addMessage(message, "user");
     input.value = "";
 
-    // Voorlopig plain text ophalen
-    let response = await fetchAI(message);
+    // Voeg het toe aan de gesprekshistorie
+    conversation.push({ role: "user", content: message });
 
-    addMessage(response, "bot");  // Hulpbot bericht
+    // Verstuur het gesprek naar Make / AI
+    let response = await fetchAI(conversation);
+
+    // Voeg het antwoord van de Hulpbot toe
+    addMessage(response, "bot");
+
+    // Voeg AI antwoord ook toe aan de gesprekshistorie
+    conversation.push({ role: "bot", content: response });
 }
 
 // Voeg bericht toe aan de chat met aparte styling
@@ -19,8 +30,8 @@ function addMessage(text, sender) {
 
     let div = document.createElement("div");
     div.className = sender; // 'user' of 'bot'
-    
-    // Zorg dat het op aparte regels komt
+
+    // Zorg voor aparte regels en witruimte
     div.innerHTML = sender === "user" ? `<b>U:</b> ${text}` : `<b>Hulpbot:</b> ${text}`;
 
     chat.appendChild(div);
@@ -28,15 +39,17 @@ function addMessage(text, sender) {
 }
 
 // Haal antwoord op van Make webhook
-async function fetchAI(question) {
+async function fetchAI(conversation) {
+    // Verstuur het hele gesprek
     let response = await fetch(API_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ question: question })
+        body: JSON.stringify({ conversation })
     });
 
-    // Plain text terughalen, omdat Make tekst terugstuurt
+    // Plain text ophalen, omdat Make tekst terugstuurt
     let data = await response.text();
+
     return data;
 }
 
