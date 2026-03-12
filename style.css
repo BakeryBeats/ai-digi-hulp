@@ -1,51 +1,20 @@
-body{
-font-family: Arial;
-background:#f5f5f5;
-text-align:center;
-padding:30px;
+#chat {
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 100%;
+    max-width: 600px;
+    height: 300px;
+    overflow-y: auto;
+    background-color: #f9f9f9;
+    font-family: Arial, sans-serif;
 }
 
-h1{
-font-size:40px;
+.user {
+    color: #1a73e8; /* blauw voor gebruiker */
+    margin: 5px 0;
 }
 
-p{
-font-size:20px;
-}
-
-button{
-font-size:20px;
-padding:15px;
-margin:10px;
-border:none;
-background:#2a7de1;
-color:white;
-border-radius:10px;
-cursor:pointer;
-}
-
-.chat-container{
-width:90%;
-max-width:600px;
-margin:auto;
-background:white;
-padding:20px;
-border-radius:10px;
-}
-
-#chat{
-height:300px;
-overflow-y:auto;
-text-align:left;
-margin-bottom:20px;
-}
-
-input{
-width:70%;
-font-size:20px;
-padding:10px;
-}
-
-.whatsapp{
-background:#25D366;
+.bot {
+    color: #0b8043; /* groen voor Hulpbot */
+    margin: 5px 0;
 }
