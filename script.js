@@ -21,7 +21,7 @@ function addMessage(text, sender) {
     div.className = sender; // 'user' of 'bot'
     
     // Zorg dat het op aparte regels komt
-    div.innerHTML = sender === "user" ? `<b>U:</b> ${text}` : `<br><b>Hulpbot:</b> ${text}`;
+    div.innerHTML = sender === "user" ? `<b>U:</b> ${text}` : `<b>Hulpbot:</b> ${text}`;
 
     chat.appendChild(div);
     chat.scrollTop = chat.scrollHeight; // Automatisch scrollen
