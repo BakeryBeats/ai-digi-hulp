@@ -2,101 +2,102 @@
 <html lang="nl">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Digitale Hulp voor Senioren</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
-            background-color: #f5f5f5;
-        }
-
-        h1 {
-            color: #333;
-        }
-
-        .chat-container {
-            border: 1px solid #ccc;
-            padding: 10px;
-            max-width: 600px;
-            height: 300px;
-            overflow-y: auto;
-            background-color: #fff;
-            margin-bottom: 10px;
-        }
-
-        #chat div.user {
-            color: #1a73e8;
-            margin: 5px 0;
-        }
-
-        #chat div.bot {
-            color: #0b8043;
-            margin: 5px 0;
-        }
-
-        input[type="text"] {
-            width: 400px;
-            padding: 8px;
-            font-size: 14px;
-        }
-
-        button {
-            padding: 8px 12px;
-            font-size: 14px;
-            margin-left: 5px;
-            cursor: pointer;
-        }
-
-        .buttons {
-            margin-top: 10px;
-        }
-
-        .buttons button {
-            margin-right: 5px;
-            margin-bottom: 5px;
-        }
-
-        .help {
-            margin-top: 20px;
-        }
-
-        .help .whatsapp {
-            background-color: #25d366;
-            color: white;
-            border: none;
-        }
-    </style>
+    <meta name="description" content="Digitale hulp voor senioren - Stel vragen over DigiD, MijnOverheid of telefoongebruik">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="app-container">
+        <header class="header">
+            <h1>🛠️ Digitale Hulp</h1>
+            <p class="subtitle">Stel een vraag over DigiD, MijnOverheid of uw telefoon</p>
+            <p class="last-updated" id="lastUpdated"></p>
+        </header>
 
-<header>
-    <h1>Digitale Hulp</h1>
-    <p>Stel een vraag over DigiD, MijnOverheid of uw telefoon.</p>
-</header>
+        <main class="main-content">
+            <section class="quick-questions" aria-label="Snelle vragen">
+                <h2>Snelle Vragen</h2>
+                <div class="button-group">
+                    <button class="quick-btn" onclick="quickQuestion('Hoe maak ik een DigiD?')" aria-label="Hulp met DigiD aanmaken">
+                        <span class="icon">🆔</span>
+                        <span class="label">DigiD hulp</span>
+                    </button>
+                    <button class="quick-btn" onclick="quickQuestion('Hoe werkt MijnOverheid?')" aria-label="Hulp met MijnOverheid">
+                        <span class="icon">🏛️</span>
+                        <span class="label">MijnOverheid</span>
+                    </button>
+                    <button class="quick-btn" onclick="quickQuestion('Ik heb hulp met mijn telefoon')" aria-label="Hulp met telefoon">
+                        <span class="icon">📱</span>
+                        <span class="label">Telefoon hulp</span>
+                    </button>
+                </div>
+            </section>
 
-<div class="buttons">
-    <button onclick="quickQuestion('Hoe maak ik een DigiD?')">DigiD hulp</button>
-    <button onclick="quickQuestion('Hoe werkt MijnOverheid?')">MijnOverheid</button>
-    <button onclick="quickQuestion('Ik heb hulp met mijn telefoon')">Telefoon hulp</button>
-</div>
+            <section class="chat-section" aria-label="Chat gesprek">
+                <div class="chat-header">
+                    <h2>Gesprek met Hulpbot</h2>
+                    <button id="clearChatBtn" class="clear-btn" onclick="clearChat()" aria-label="Chat wissen">
+                        <span class="icon">🗑️</span>
+                        <span class="label">Wissen</span>
+                    </button>
+                </div>
 
-<div class="chat-container">
-    <div id="chat"></div>
+                <div class="chat-container" id="chatContainer" role="log" aria-live="polite" aria-atomic="false">
+                    <div id="chat" class="chat-messages"></div>
+                    
+                    <div id="loadingIndicator" class="loading-indicator hidden" aria-hidden="true">
+                        <div class="spinner"></div>
+                        <span>Hulpbot denkt...</span>
+                    </div>
+                </div>
 
-    <input type="text" id="userInput" placeholder="Typ uw vraag..." />
-    <button onclick="sendMessage()">Verstuur</button>
-</div>
+                <div class="error-message hidden" id="errorMessage" role="alert" aria-live="assertive"></div>
 
-<div class="help">
-    <p>Heeft u liever persoonlijke hulp?</p>
-    <a href="https://wa.me/31600000000">
-        <button class="whatsapp">Hulp via WhatsApp</button>
-    </a>
-</div>
+                <form id="messageForm" class="message-form" onsubmit="handleSubmit(event)">
+                    <div class="input-group">
+                        <label for="userInput" class="input-label">Uw vraag:</label>
+                        <textarea 
+                            id="userInput" 
+                            name="userInput"
+                            placeholder="Typ uw vraag hier..."
+                            rows="2"
+                            maxlength="500"
+                            aria-describedby="charCount helpText"
+                            required
+                        ></textarea>
+                        <div class="input-footer">
+                            <span id="charCount" class="char-count">0 / 500</span>
+                            <span id="helpText" class="help-text">Druk op Enter om te verzenden</span>
+                        </div>
+                    </div>
+                    <div class="button-group">
+                        <button type="submit" class="send-btn" id="sendBtn" aria-label="Verstuur vraag">
+                            <span class="icon">📤</span>
+                            <span class="label">Verstuur</span>
+                        </button>
+                    </div>
+                </form>
+            </section>
 
-<!-- Config en script -->
-<script src="config.js"></script>
-<script src="script.js"></script>
+            <section class="help-section" aria-label="Extra hulp">
+                <h2>Meer Hulp</h2>
+                <p>Heeft u liever persoonlijke hulp? Neem contact op via WhatsApp.</p>
+                <a href="https://wa.me/31600000000" class="whatsapp-btn" target="_blank" rel="noopener" aria-label="Hulp via WhatsApp">
+                    <span class="icon">💬</span>
+                    <span class="label">Hulp via WhatsApp</span>
+                </a>
+            </section>
+        </main>
 
+        <footer class="footer">
+            <p>&copy; 2026 Digitale Hulp voor Senioren</p>
+            <p class="version">Versie 2.0</p>
+        </footer>
+    </div>
+
+    <!-- Config and script -->
+    <script src="config.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
