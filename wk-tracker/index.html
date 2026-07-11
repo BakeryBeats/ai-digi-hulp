@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WK Tracker - Live Scores & Standings</title>
+    <meta name="description" content="Volg alle WK-wedstrijden live, standen, statistieken en meer">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="nav-content">
+                <h1 class="logo">⚽ WK Tracker 2026</h1>
+                <ul class="nav-menu">
+                    <li><a href="#home" class="nav-link active" data-section="home">Home</a></li>
+                    <li><a href="#matches" class="nav-link" data-section="matches">Wedstrijden</a></li>
+                    <li><a href="#standings" class="nav-link" data-section="standings">Standen</a></li>
+                    <li><a href="#stats" class="nav-link" data-section="stats">Statistieken</a></li>
+                    <li><a href="#fantasy" class="nav-link" data-section="fantasy">Fantasy</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Home Section -->
+            <section id="home" class="section active">
+                <div class="hero">
+                    <h2>Welkom bij WK Tracker</h2>
+                    <p>Volg alle wedstrijden, standen en statistieken live!</p>
+                </div>
+
+                <div class="featured-matches">
+                    <h3>🔥 Komende Wedstrijden</h3>
+                    <div class="matches-grid" id="upcomingMatches">
+                        <div class="match-card skeleton"></div>
+                        <div class="match-card skeleton"></div>
+                        <div class="match-card skeleton"></div>
+                    </div>
+                </div>
+
+                <div class="recent-results">
+                    <h3>📊 Recente Resultaten</h3>
+                    <div class="results-list" id="recentResults">
+                        <div class="result-item skeleton"></div>
+                        <div class="result-item skeleton"></div>
+                        <div class="result-item skeleton"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Matches Section -->
+            <section id="matches" class="section">
+                <h2>Alle Wedstrijden</h2>
+                
+                <div class="filter-controls">
+                    <button class="filter-btn active" data-filter="all">Alle</button>
+                    <button class="filter-btn" data-filter="upcoming">Komend</button>
+                    <button class="filter-btn" data-filter="live">Live</button>
+                    <button class="filter-btn" data-filter="finished">Afgelopen</button>
+                </div>
+
+                <div class="matches-container" id="matchesContainer">
+                    <div class="match-card skeleton"></div>
+                    <div class="match-card skeleton"></div>
+                    <div class="match-card skeleton"></div>
+                </div>
+            </section>
+
+            <!-- Standings Section -->
+            <section id="standings" class="section">
+                <h2>Poule Standen</h2>
+                
+                <div class="group-selector">
+                    <button class="group-btn active" data-group="A">Poule A</button>
+                    <button class="group-btn" data-group="B">Poule B</button>
+                    <button class="group-btn" data-group="C">Poule C</button>
+                    <button class="group-btn" data-group="D">Poule D</button>
+                </div>
+
+                <div class="standings-table" id="standingsTable">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Pos</th>
+                                <th>Land</th>
+                                <th>W</th>
+                                <th>G</th>
+                                <th>V</th>
+                                <th>Pnt</th>
+                            </tr>
+                        </thead>
+                        <tbody id="standingsBody">
+                            <tr class="skeleton-row"><td colspan="6"></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Stats Section -->
+            <section id="stats" class="section">
+                <h2>Statistieken</h2>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>🎯 Top Scorers</h3>
+                        <div class="stat-list" id="topScorers">
+                            <div class="stat-item skeleton"></div>
+                            <div class="stat-item skeleton"></div>
+                            <div class="stat-item skeleton"></div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <h3>🧤 Beste Keepers</h3>
+                        <div class="stat-list" id="topKeepers">
+                            <div class="stat-item skeleton"></div>
+                            <div class="stat-item skeleton"></div>
+                            <div class="stat-item skeleton"></div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <h3>⚡ Meeste Assists</h3>
+                        <div class="stat-list" id="topAssists">
+                            <div class="stat-item skeleton"></div>
+                            <div class="stat-item skeleton"></div>
+                            <div class="stat-item skeleton"></div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <h3>🟨 Meeste Gele Kaarten</h3>
+                        <div class="stat-list" id="topYellows">
+                            <div class="stat-item skeleton"></div>
+                            <div class="stat-item skeleton"></div>
+                            <div class="stat-item skeleton"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Fantasy Section -->
+            <section id="fantasy" class="section">
+                <h2>Fantasy League</h2>
+                
+                <div class="fantasy-intro">
+                    <p>Maak je eigen team en speel tegen vrienden!</p>
+                    <button class="btn btn-primary" id="createTeamBtn">Maak Team</button>
+                </div>
+
+                <div class="fantasy-content" id="fantasyContent">
+                    <div class="my-team" id="myTeam" style="display: none;">
+                        <h3>Mijn Team</h3>
+                        <div class="team-info" id="teamInfo"></div>
+                        <div class="player-selection" id="playerSelection"></div>
+                    </div>
+                    
+                    <div class="fantasy-leaderboard">
+                        <h3>Leaderboard</h3>
+                        <div class="leaderboard-list" id="leaderboard">
+                            <div class="leaderboard-item skeleton"></div>
+                            <div class="leaderboard-item skeleton"></div>
+                            <div class="leaderboard-item skeleton"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2026 WK Tracker | Live voetbal statistieken</p>
+            <p class="update-time">Laatst bijgewerkt: <span id="updateTime">--:--</span></p>
+        </footer>
+    </div>
+
+    <script src="api-data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
